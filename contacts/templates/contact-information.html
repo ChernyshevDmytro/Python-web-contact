@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add person</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+    />
+  </head>
+  <body>
+    <main class="container">
+      <nav
+        style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px"
+      >
+        <ul>
+          <li><a href="/" role="button"> Go back to the main page </a></li>
+        </ul>
+      </nav>
+      <form method="POST" action="/contact-information">
+        <div style="padding: 10px">
+          <label
+            >Person name:
+            <input type="text" name="name" required />
+          </label>
+        </div>
+        <div style="padding: 10px">
+          <label
+            >Person phone:
+            <input type="int" name="phones" />
+          </label>
+        </div>        
+        <div style="padding: 10px">
+          <label
+            >Person birthday:
+            <input type="int" name="birthday" />
+          </label>
+        </div>
+        <div style="padding: 10px">
+          <label
+            >Person email:
+            <input type="text" name="email" />
+          </label>
+        </div>
+
+        <div style="padding: 10px">
+          <label
+            >Country:
+            <input type="text" name="country" />
+          </label>
+        </div>
+
+        <div style="padding: 10px">
+          <label
+            >City:
+            <input type="text" name="city" />
+          </label>
+        </div>
+
+        <div style="padding: 10px">
+          <label
+            >Street:
+            <input type="text" name="street" />
+          </label>
+        </div>
+
+        <div style="padding: 1px">
+          <label
+            >Building number:
+            <input type="text" name="building_number" />
+          </label>
+        </div>
+
+        <div style="padding: 1px">
+          <label
+            >Flat number:
+            <input type="text" name="flat_number" />
+          </label>
+        </div>
+      
+        
+   
+          <button type="reset" class="secondary">Reset</button>
+          <button type="submit">Submit</button>
+        </div>
+      
+    </form>
+    
+    </main>
+  </body>
+</html>

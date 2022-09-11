@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Person information</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+    />
+  </head>
+  <body>
+    <main class="container">
+      <nav
+        style="margin-bottom: 20px; border-bottom: 1px solid; padding-left: 30px"
+      >
+        <ul>
+          <li><a href="/contacts" role="button"> Go back to the main page </a></li>
+        </ul>
+      </nav>
+      <h1>{{person.name}}</h1>
+      <a href="/uploads/{{person.id}}" role="button" style="padding: 1px">Add file</a >
+      
+        {% if person.birthday %}      
+      <li>
+        <a  class="outline" >Birthday : {{person.birthday.date()}}</a>     
+        <a href="/birthday/{{person.id}}" role="button" style="padding: 1px; border-bottom: 1px solid" >Edit birthday</a>
+        <a href="/delete_birthday/{{person.id}}" role="button" style="padding: 1px">Delete birthday</a>  
+        </li>      
+      {% endif %}
+ 
+      {% if person.email %}
+      <li>
+        <a  class="outline" >Email  : {{person.email}}</a>     
+        <a href="/email/{{person.id}}" role="button" style="padding: 1px">Edit birthday</a>
+        <a href="/delete_email/{{person.id}}" role="button" style="padding: 1px">Delete birthday</a>  
+        </li>      
+      {% endif %}
+      
+      
+      {% for phone in person.phones%}
+      <li>
+      <a  class="outline" >Phone : {{phone.phone}}</a>     
+      <a href="/phones/{{phone.id}}" role="button" style="padding: 1px">Edit phone</a>
+      <a href="/delete_phone/{{phone.id}}" role="button"  style="padding: 1px">Delete phone</a>  
+      </li>       
+      {% endfor %}
+
+      {% for address in person.address%}
+      {% if address.country %}
+      <li>
+      <a  class="outline" >Country : {{address.country}}</a>     
+      <a href="/country/{{address.id}}" role="button" style="padding: 1px">Edit country</a>
+      <a href="/delete_country/{{address.id}}" role="button"  style="padding: 1px">Delete country</a>  
+      </li>       
+      {% endif %}
+
+      {% if address.city %}
+      <li>
+      <a  class="outline" >City : {{address.city}}</a>     
+      <a href="/city/{{address.id}}" role="button" style="padding: 1px">Edit country</a>
+      <a href="/delete_city/{{address.id}}" role="button"  style="padding: 1px">Delete country</a>  
+      </li>       
+      {% endif %}      
+
+      {% if address.street %}
+      <li>
+      <a  class="outline" >Street : {{address.street}}</a>     
+      <a href="/street/{{address.id}}" role="button" style="padding: 1px">Edit street</a>
+      <a href="/delete_street/{{address.id}}" role="button"  style="padding: 1px">Delete street</a>  
+      </li>       
+      {% endif %}
+
+      {% if address.building_number %}
+      <li>
+      <a  class="outline" >Building number : {{address.building_number}}</a>     
+      <a href="/building_number/{{address.id}}" role="button" style="padding: 1px">Edit building number</a>
+      <a href="/delete_building_number/{{address.id}}" role="button"  style="padding: 1px">Delete building number</a>  
+      </li>       
+      {% endif %}      
+
+      {% if address.flat_number %}
+      <li>
+      <a  class="outline" >Flat number : {{address.flat_number}}</a>     
+      <a href="/building_number/{{address.id}}" role="button" style="padding: 1px">Edit flat number</a>
+      <a href="/delete_flat_number/{{address.id}}" role="button"  style="padding: 1px">Delete flat number</a>  
+      </li>       
+      {% endif %}      
+      
+      {% endfor %}
+      
+      {% for file in person.data%}
+      {% if file.file_name %}
+      <li>
+      <a  class="outline" >File : {{file.file_name}}</a>     
+      <a href="/download_file/{{file.file_name+'.'+file.file_extension}}" role="button" style="padding: 1px">Show file</a>       
+      </li>       
+      {% endif %} 
+      {% endfor %}
+
+      
+      
+
+    </main>
+  </body>
+</html>

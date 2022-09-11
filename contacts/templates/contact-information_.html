@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add person</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+    />
+  </head>
+  <body>
+    <main class="container">
+      <nav
+        style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px"
+      >
+        <ul>
+          <li><a href="/contacts" role="button"> Go back to the main page </a></li>
+        </ul>
+      </nav>
+      <form method="POST" action="/contact-information">
+        <div style="padding: 10px">
+          <label
+            >Person name: {% if person.name %} {{person.name}} {% endif %}
+            <input type="text" name="name" required />
+          </label>
+        </div>
+        <div style="padding: 10px">
+          <label> Person phones: </label>
+            {% for phone in person.phones%}
+            {% if phone.phone %}
+            <li>
+              <a  class="outline" >Phone : {{phone.phone}}</a>     
+              <a href="/phones/{{phone.id}}" role="button" style="padding: 1px">Edit phone</a>
+              <a href="/phone-delete/{{phone.id}}" role="button"  style="padding: 1px">Delete phone</a>  
+              </li>  
+              {% endif %}
+            
+              {% endfor %}
+            <input type="int" name="phones" />
+          
+        </div>        
+        <div style="padding: 10px">
+          <label
+            >Person birthday: {% if person.birthday %} {{person.birthday}} {% endif %}
+            <input type="int" name="birthday" />
+          </label>
+        </div>
+        <div style="padding: 10px">
+          <label
+            >Person email: {% if person.email %} {{person.email}} {% endif %}
+            <input type="text" name="email" />
+          </label>
+        </div>
+        
+        {% if not person %}
+        <div style="padding: 10px">
+          <label
+            >Country:
+            <input type="text" name="country" />
+          </label>
+        </div>
+        <div style="padding: 10px">
+          <label
+            >City:
+            <input type="text" name="city" />
+          </label>
+        </div>        
+        
+        <div style="padding: 10px">
+          <label
+            >Street:
+            <input type="text" name="street" />
+          </label>
+        </div>  
+        <div style="padding: 1px">
+          <label
+            >Building number:
+            <input type="text" name="building_number" />
+          </label>
+        </div>
+        {% endif %}
+        <div style="padding: 1px">
+          <label
+            >Flat number:
+            <input type="text" name="flat_number" />
+          </label>
+        </div>        
+        {% for address in person.address%}
+        <div style="padding: 10px">
+          <label
+            >Country: {% if address.country %} {{address.country}} {% endif %}
+            <input type="text" name="country" />
+          </label>
+        </div>
+        
+        <div style="padding: 10px">
+          <label
+            >City: {% if address.city %} {{address.city}} {% endif %}
+            <input type="text" name="city" />
+          </label>
+        </div>
+
+        <div style="padding: 10px">
+          <label
+            >Street: {% if address.street %} {{address.street}} {% endif %}
+            <input type="text" name="street" />
+          </label>
+        </div>
+
+        <div style="padding: 1px">
+          <label
+            >Building number: {% if address.building_number %} {{address.building_number}} {% endif %}
+            <input type="text" name="building_number" />
+          </label>
+        </div>
+
+        <div style="padding: 1px">
+          <label
+            >Flat number: {% if address.flat_number %} {{address.flat_number}} {% endif %}
+            <input type="text" name="flat_number" />
+          </label>
+        </div>
+        {% endfor %}
+        
+        {% for file in person.data%}
+        {% if file.file_name %}
+        <li>
+        <a  class="outline" >File : {{file.file_name}}</a>     
+        <a href="/download_file/{{file.file_name+'.'+file.file_extension}}" role="button" style="padding: 1px">Show file</a>       
+        </li>       
+        {% endif %} 
+        {% endfor %}
+   
+          <button type="reset" class="secondary">Reset</button>
+          <button type="submit">Submit</button>
+        </div>
+      
+    </form>
+    
+    </main>
+  </body>
+</html>

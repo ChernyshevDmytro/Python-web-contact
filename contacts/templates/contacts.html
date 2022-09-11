@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Contacts Book</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+    />
+  </head>
+  <body>
+    <main class="container">
+      <nav
+      style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px"
+    >
+      <ul>
+        <li><a href="/contacts" role="button"> Go back to the main page </a></li>
+        <li><a href="/contacts" role="button"> refresh </a></li>
+      </ul>
+    </nav>     
+      <nav
+        style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px"
+      >
+        <ul>
+          <li><a href="/contact-information/" role="button">Add Person details</a> </li>
+          
+          <form method="POST" > 
+          <li>
+            Find person name
+            <input type="text" name="find" />          
+            Find file
+          <input type="text" name="find_file" />
+          <button type="submit">submit  </button>          
+        </li>
+        </ul>
+ 
+      </nav>
+      </form>  
+      
+      <form method="GET">
+        {%if information_name %}    {{information_name}}   {% endif %}
+      {% for person in persons%}
+      <ul>
+        <li>
+          {%if person%}
+          <a href="/contact-information/{{person.id}}" role="button" style="padding: 1px">Name:{{person.name}}</a>
+          <a href="/uploads/{{person.id}}" role="button" style="padding: 1px">Add file</a >
+          <a href="/delete/{{person.id}}" role="button" style="padding: 1px" >Delete person</a
+          >
+      
+         
+          {% endif %}
+        </li>
+      </ul>
+      
+     
+      {% endfor %}
+      </form> 
+    </main>
+  </body>
+</html>
